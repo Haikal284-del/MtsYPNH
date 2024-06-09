@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>MTs YPNH Tanah Abang</title>
+    <style type="text/css" media="all">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #header {
+            background-color: blue;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 9999;
+        }
+
+        #menu-toggle {
+            width: 50px;
+            /* Lebar total area klik */
+            height: 60px;
+            /* Tinggi total area klik */
+            position: absolute;
+            top: 40px;
+            left: 880px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .line {
+            width: 100%;
+            /* Panjang garis */
+            height: 6px;
+            /* Ketebalan garis */
+            background-color: white;
+            margin-bottom: 5px;
+            /* Jarak antara garis */
+            transition: transform 0.3s ease;
+            /* Animasi untuk rotasi */
+        }
+
+        #menu {
+            position: absolute;
+            top: 60px;
+            /* Jarak menu dari atas */
+            right: 20px;
+            /* Jarak menu dari kanan */
+            background-color: white;
+            border: 1px solid black;
+            padding: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            /* Bayangan untuk efek pop-up */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            /* Animasi untuk muncul dan menghilang */
+            opacity: 0;
+            /* Awalnya menu tidak terlihat */
+            transform: translateY(-20px);
+            /* Awalnya menu sedikit tersembunyi */
+        }
+        #welcomeimg {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 100px;
+            /* Adjust this value as needed */
+        }
+        #ajakan {
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: justify;
+            font-size: 16px;
+            margin-top: 20px;
+            /* Adjust this value as needed */
+        }
+        #garis1 {
+            border-top: 2px solid black;
+        }
+        #footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            /* Adjust this value as needed */
+        }
+        #daftar {
+            position: relative;
+            width: 50%;
+            height: 120px;
+            border: 2px solid black;
+            background-color: blue;
+            color: white;
+            left: 50%;
+            transform: translate(-50%);
+            font-size: 50px;
+        }
+        #lambang1 {
+            position: absolute;
+            border: 2px solid black;
+            border-radius: 50px;
+            width: 100px;
+            height: 100px;
+            left: 30px;
+            top: 20px;
+        }
+        #textAjakaninImg {
+            position: absolute;
+            font-size: 90px;
+            left: 50px;
+            top: 170px;
+            text-shadow: 10px 2px 2px black;
+            color: yellow;
+        }
+        #textAjakaninImg2 {
+            position: absolute;
+            font-size: 90px;
+            left: 180px;
+            top: 280px;
+            text-shadow: 10px 2px 2px black;
+            color: white;
+        }
+        #textAjakaninImg3 {
+            position: absolute;
+            font-size: 100px;
+            left: 150px;
+            top: 380px;
+            text-shadow: 10px 2px 2px black;
+            color: orange;
+        }
+        #textAjakaninImg4 {
+            position: absolute;
+            font-size: 100px;
+            left: 350px;
+            top: 380px;
+            text-shadow: 10px 2px 2px black;
+            color: skyblue;
+        }
+        #menuTools {
+            position: relative;
+            width: 2px;
+            height: 100%;
+            background-color: blue;
+            border: 2px solid black;
+            border-right: none;
+            left: 970px;
+
+        }
+        #app {
+            display: block;
+        }
+        #info {
+            display: none;
+        }
+        #back {
+            position: absolute;
+            width: 70px;
+            height: 50px;
+            border: 2px solid black;
+            background-color: red;
+            color: white;
+            left: 20px;
+            top: 100px;
+
+        }
+        #Informasi {
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            font-size: 40px;
+            font-family: Georgia;
+            border-bottom: 5px solid black;
+        }
+        #back {
+            position: absolute;
+            width: 170px;
+            height: 80px;
+            border: 2px solid black;
+            background-color: red;
+            color: white;
+            left: 10px;
+            top: 30px;
+            font-family: Georgia;
+            font-size: 50px;
+        }
+        #latarbelakang {
+            position: fixed;
+            width: 100%;
+            height: 800px;
+            top: 200px;
+        }
+        body {
+            background-color: white;
+        }
+        #container {
+            position: absolute;
+            top: 1050px;
+            width: 80%;
+            left: 50%;
+            transform: translate(-50%);
+            height: 600px;
+            background-color: white;
+            font-size: 40px;
+            text-align: center;
+        }
+        #textCipta {
+            position: absolute;
+            top: 1700px;
+            color: white;
+            text-shadow: 10px 2px 2px black;
+            left: 50%;
+            transform: translate(-50%);
+            font-family: Georgia;
+            font-size: 30px;
+        }
+        #daftarScane {
+            display: none;
+        }
+        #headerDaftar {
+            background-color: blue;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            font-family: Georgia;
+            font-size: 40px;
+        }
+        #formPendaftaran {
+            position: absolute;
+            width: 80%;
+            height: 1200px;
+            border: 5px solid black;
+            left: 50%;
+            transform: translate(-50%);
+            top: 350px;
+        }
+        #Fnamalengkap {
+            position: absolute;
+            font-family: Georgia;
+            font-size: 45px;
+            left: 30px;
+            top: 50px;
+            color: green;
+            text-shadow: 5px 2px 2px white;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        #namalengkap {
+            position: absolute;
+            font-family: Georgia;
+            font-size: 45px;
+            top: 170px;
+            color: green;
+            text-shadow: 2px 2px 2px black;
+            left: 50%;
+            transform: translate(-50%);
+            border: 2px solid black;
+            border-radius: 20px;
+            height: 70px;
+            text-align: center;
+        }
+        #Fjeniskelamin {
+            position: absolute;
+            font-family: Georgia;
+            font-size: 45px;
+            left: 30px;
+            top: 280px;
+            color: green;
+            text-shadow: 5px 2px 2px white;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        #jenisKelamin {
+            position: absolute;
+            font-family: Georgia;
+            font-size: 45px;
+            top: 400px;
+            color: blue;
+            text-shadow: 2px 2px 2px black;
+            left: 50%;
+            transform: translate(-50%);
+            border: 2px solid black;
+            border-radius: 20px;
+            height: 70px;
+            text-align: center;
+        }
+        #Falamat {
+            position: absolute;
+            font-family: Georgia;
+            font-size: 45px;
+            left: 30px;
+            top: 480px;
+            color: yellow;
+            text-shadow: 5px 2px 2px black;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        #alamat {
+            position: absolute;
+            font-family: Georgia;
+            font-size: 45px;
+            top: 590px;
+            color: blue;
+            text-shadow: 2px 2px 2px black;
+            left: 50%;
+            transform: translate(-50%);
+            border: 2px solid black;
+            border-radius: 20px;
+            height: 70px;
+            text-align: center;
+        }
+        #FnomorWhatsApp {
+            position: absolute;
+            font-family: Georgia;
+            font-size: 40px;
+            left: 30px;
+            top: 680px;
+            color: yellow;
+            text-shadow: 5px 2px 2px black;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        #nomorWhatsApp {
+            position: absolute;
+            font-family: Georgia;
+            font-size: 45px;
+            top: 780px;
+            color: blue;
+            text-shadow: 2px 2px 2px black;
+            left: 50%;
+            transform: translate(-50%);
+            border: 2px solid black;
+            border-radius: 20px;
+            height: 70px;
+            text-align: center;
+        }
+        #kirimForDaftar {
+            position: absolute;
+            font-family: Georgia;
+            font-size: 45px;
+            top: 950px;
+            color: white;
+            box-shadow: 2px 2px 2px black;
+            left: 50%;
+            transform: translate(-50%);
+            border: 2px solid black;
+            border-radius: 20px;
+            height: 70px;
+            text-align: center;
+            width: 280px;
+            height: 100px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body id="layer">
+    <div id="app">
+        <div id="header">
+            <img src="https://i.postimg.cc/h4CmNy3k/IMG-20240608-185612.jpg" alt="" id="lambang1" />
+            <h1 id="judulWeb">MTs YPNH Tanah Abang</h1>
+            <div id="menu-toggle" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div id="menu" class="show">
+                <!-- Isi menu pilihan -->
+            </div>
+        </div>
+        <div id="menuTools">
+
+        </div>
+        <img src="https://i.postimg.cc/9FpTvD50/1717834166752.jpg" alt="Welcome" id="welcomeimg"><h2 id="textAjakaninImg">Welcome</h2><h2 id="textAjakaninImg2">To</h2><h2 id="textAjakaninImg3">MTs</h2><h2 id="textAjakaninImg4">YPNH</h2>
+        <div id="garis1"></div>
+        <div id="ajakan">
+            <h2>🎓 Ajak Masa Depanmu Bersinar di MTs YPNH 🎓</h2>
+            <p>
+                Hai calon pelajar yang berbakat!
+            </p>
+            <p>
+                Apakah kamu ingin memperluas wawasanmu, mengeksplorasi potensimu, dan menjadi bagian dari komunitas yang inspiratif? Bergabunglah dengan kami di MTs YPNH!
+            </p>
+            <p>
+                Kami mengundangmu untuk bergabung dengan keluarga besar MTs YPNH, tempat kami tidak hanya memberikan pendidikan berkualitas, tetapi juga mengajarkan nilai-nilai agama, kedisiplinan, kesopanan, aqidah, serta nilai-nilai toleransi yang penting untuk masa depanmu. Di sini, kamu akan belajar dari guru-guru yang asik, memiliki banyak teman, dan menanamkan nilai sopan dalam interaksi sehari-hari.
+            </p>
+            <p>
+                📍 Lokasi: Kecamatan Pali Tanah Abang, Jalan Pertamina. 📅 Jadwal Pendaftaran: Terbuka setiap hari.
+            </p>
+            <p>
+                Di MTs YPNH, kami menyelenggarakan beragam kegiatan ekstrakurikuler seperti Pramuka, Pencak Silat, dan lainnya, untuk mengembangkan potensi dan bakatmu.
+            </p>
+            <p>
+                Visi dan misi kami adalah menjadikan anak-anak yang berakhlak mulia, siap menghadapi tantangan masa depan dengan percaya diri dan integritas.
+            </p>
+            <p>
+                Ayo, jangan lewatkan kesempatan ini untuk mewujudkan impianmu! Daftarkan dirimu sekarang di MTs YPNH dan mari bersama-sama membangun masa depan yang gemilang.
+            </p>
+            <p id="s kull">
+                Banyak berbagai kegiatan tambahan di MTs YPNH, Berikut adalah kegiatan nya.
+            </p>
+            <h2 id="sKullSilat">1. Silat</h2>
+            <img src="https://i.postimg.cc/ZR65Zm65/1717840655754.jpg" alt="" width="100%"height="700px" />
+            <p>
+                Di MTs memiliki kegiatan yang sangat seru lho!, kamu bisa ikutan s-scholl silat, kamu akan mempelajari silat di sekolah.
+            </p>
+            <h2 id="sKullPramuka">2. Pramuka</h2>
+            <img src="https://i.postimg.cc/k5JrkrqW/1717841131837.jpg" alt="" width="100%"height="700px" />
+            <p>
+                Kamu Juga dapat mengikuti kegiatan Pramuka, kelas 7 pun boleh ikutan, nantikan keseruan nya di MTs YPNH!
+            </p>
+            <h2 id="sKullNgaji">3. Ngaji</h2>
+            <img src="https://i.postimg.cc/ZKDhvYtn/1717841301861.jpg" alt="" width="100%"height="700px" />
+            <p>
+                sebagai muslim dan muslimah, kita di wajib kan untuk beribadah kepada Allah SWT. maka di sekolah ini kamu dapat mengikuti kegiatan ngaji secara gratis.
+            </p>
+            <p>
+                Temukan keseruan nya buruan masuk Mts YPNH
+            </p>
+            <p>
+                Di Mts YPNH, banyak praktek yang bikin kita semangat sekolah, seperti.
+            </p>
+            <h2>Praktek Naik Haji</h2>
+            <img src="https://i.postimg.cc/pLGps5hH/1717841850262.jpg" alt="" width="100%"height="1200px" />
+            <p>
+                Kita juga di ajari banyak pengetahuan Islam dan yang serunya lagi ada praktek nyan loh!, seperti praktek naik haji ini, pelajaran fikih memang seruh ya.
+            </p>
+            <p>
+                Tunggu apa lagi buruan daftar sekolah MTs YPNH. Serunya bukan main loh.
+            </p>
+            <button id="daftar"onclick="daftar ()">Daftar Sekarang</button>
+        </div>
+        <div id="footer">
+            <p>
+                Bergabunglah dengan MTs YPNH, tempat di mana impianmu menjadi kenyataan!. ©copyright 2024 By Haikal Zahidrat 
+            </p>
+        </div>
+    </div>
+    <div id="info">
+        <div id="Informasi">
+            <button id="back"onclick="back()">Back</button>
+            <h2 id="textInfo">Informasi</h2>
+        </div>
+        <img id="latarbelakang" src="https://i.postimg.cc/h4CmNy3k/IMG-20240608-185612.jpg" alt="" id="lambang1" alt="" />
+        <table id="container" border="5">
+            <tr>
+                <td>Nama Sekolah</td>
+                <td>MTs YPNH Tanah Abang</td>
+            </tr>
+            <tr>
+                <td>Kepala Sekolah</td>
+                <td>Ririn Novika Hartati</td>
+            </tr>
+            <tr>
+                <td>Jumlah Keseluruhan Siswa</td>
+                <td>460 Siswa</td>
+            </tr>
+            <tr>
+                <td>Alamat Sekolah</td>
+                <td>Kec.Pali | Tanah Abang | jln. Pertamina.</td>
+            </tr>
+        </table>
+        <h2 id="textCipta">Web Design : Haikal Zahidrat.</h2>
+    </div>
+    <div id="daftarScane">
+        <div id="headerDaftar">
+            <button id="back"onclick="back()">Back</button>
+            <h2>Mendaftarkan Diri</h2>
+        </div>
+        <div id="formPendaftaran">
+            <img src="https://i.postimg.cc/pLGps5hH/1717841850262.jpg" alt="" width="100%"height="100%" />
+            <h2 id="Fnamalengkap">Nama Lengkap : </h2>
+            <input type="text" name="namalengkap" id="namalengkap" value="" placeholder="Masukan Nama Kamu!" required="" />
+            <h2 id="Fjeniskelamin">Jenis Kelamin : </h2>
+            <select name="jenisKelamin" id="jenisKelamin">
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select required="">
+            <h2 id="Falamat">Alamat : </h2>
+            <input type="text" name="alamat" id="alamat" value="" placeholder="Dimana Alamat rumahmu?" required="" />
+            <h2 id="FnomorWhatsApp">Nomor WhatsApp : </h2>
+            <input type="number" name="nomorWhatsApp" id="nomorWhatsApp" value="" placeholder="Masukan Nomor WhatsApp" required="" />
+            <button id="kirimForDaftar" onclick="kirim()">Daftar</button>
+        </div>
+
+
+    </div>
+    <script>
+        var nama = '';
+        var Kelamin = '';
+        var alamatRumah = '';
+        var open = false;
+        open = true;
+        function toggleMenu() {
+            document.getElementById('app').style.display = 'none';
+            document.getElementById('info').style.display = 'block';
+            document.getElementById('layer').style.backgroundColor = 'blue';
+        }
+        var emoji = '';
+        var randomEmoji = 0;
+        setInterval(function() {
+            randomEmoji++;
+            if (randomEmoji == 1) {
+                emoji = '🤓';
+            } else if (randomEmoji == 2) {
+                emoji = '📚';
+            } else if (randomEmoji == 3) {
+                emoji = '📝';
+            } else if (randomEmoji == 4) {
+                emoji = '🏫';
+            } else if (randomEmoji == 5) {
+                emoji = '🎓';
+            } else {
+                randomEmoji = 1;
+            }
+            document.getElementById('judulWeb').innerHTML = emoji+'MTs YPNH Tanah Abang'+emoji;
+        }, 1000)
+        var nomorWa='';
+        setInterval(function() {
+            
+        })
+        function back() {
+            document.getElementById('app').style.display = 'block';
+            document.getElementById('info').style.display = 'none';
+            document.getElementById('daftarScane').style.display = 'none';
+            document.getElementById('layer').style.backgroundColor = 'white';
+            
+        }
+        function daftar() {
+            document.getElementById('app').style.display = 'none';
+            document.getElementById('daftarScane').style.display = 'block';
+            document.getElementById('layer').style.backgroundColor = 'white';
+        }
+
+        function kirim() {
+            nama = document.getElementById('namalengkap').value;
+            Kelamin = document.getElementById('jenisKelamin').value;
+            alamatRumah = document.getElementById('alamat').value;
+            nomorWa=document.getElementById('nomorWhatsApp').value;
+            if(nama!=''&&alamatRumah!=''&&nomorWa>99999999){
+                
+                window.location.href = 'https://wa.me/+6283111486366?text=Assalamualaikum buk. saya ingin mendaftar kan diri ke sekolah MTs YPNH dengan informasi : \n *Nama :* '+nama+', *jenis Kelamin :* '+Kelamin+', *Alamat :* '+alamatRumah+', Dengan Informasi ini saya ingin mendaftar diri ke sekolah tersebut terimakasih.';
+            }else{
+            alert('Error!, Mohon di isi dulu Forum nya!')
+            }
+        }
+    </script>
+</body>
+</html>
